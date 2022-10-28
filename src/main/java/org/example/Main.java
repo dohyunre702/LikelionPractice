@@ -1,8 +1,7 @@
-package org.example;
-//test
-public class Main {
-    public static void main(String[] args) {
+package org.example;public class Main {
 
+    //test
+    public static void main(String[] args) {
         System.out.println("Hello world!");
     }
 }
