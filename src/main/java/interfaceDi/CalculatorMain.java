@@ -9,7 +9,7 @@ public class CalculatorMain {
         int num1 = sc.nextInt();
         int num2 = sc.nextInt();
 
-        Calculator calculator = new Calculator();
-        System.out.println(calculator.plus(num1, num2));
+        Calculator calculator = new Calculator(num1, num2);
+        calculator.plus();
     }
 }
