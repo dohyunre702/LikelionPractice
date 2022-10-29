@@ -1,4 +1,4 @@
-package RandomAlphabet;
+package week1.RandomAlphabet;
 
 import java.util.HashSet;
 import java.util.Set;

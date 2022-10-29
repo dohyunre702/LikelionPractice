@@ -1,4 +1,4 @@
-package RandomNumber;
+package week1.RandomNumber;
 
 //random number 50개를 생성하고 중복되지 않는 숫자만 남기기
 public class RandomNumberGeneratorMain {

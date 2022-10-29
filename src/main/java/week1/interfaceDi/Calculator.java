@@ -1,4 +1,4 @@
-package interfaceDi;
+package week1.interfaceDi;
 
 public class Calculator {
 

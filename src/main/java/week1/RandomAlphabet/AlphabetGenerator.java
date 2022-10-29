@@ -1,4 +1,4 @@
-package RandomAlphabet;
+package week1.RandomAlphabet;
 
 public class AlphabetGenerator implements Generator<Character>{
     public Character generate(int num) {

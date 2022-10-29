@@ -1,4 +1,4 @@
-package interfaceDi;
+package week1.interfaceDi;
 
 public class RandomCalculator implements RandomDI{
     //인터페이스에 선언된 추상 메소드의 실체 메소드 선언

@@ -1,4 +1,4 @@
-package RandomNumber;
+package week1.RandomNumber;
 
 public class PlusGenerator implements NumberGenerator {
 
