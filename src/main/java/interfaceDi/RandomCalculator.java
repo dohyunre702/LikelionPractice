@@ -1,6 +1,6 @@
 package interfaceDi;
 
-public class RandomCalculator {
+public class RandomCalculator implements RandomDI{
     //인터페이스에 선언된 추상 메소드의 실체 메소드 선언
     public int a;
     public int randomNumber = (int) (Math.random() * 10);
@@ -35,4 +35,7 @@ public class RandomCalculator {
         }
     }
 
+    public int generate(int num) {
+     return randomNumber;
+    }
 }
