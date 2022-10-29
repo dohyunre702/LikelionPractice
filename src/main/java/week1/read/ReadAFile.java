@@ -10,6 +10,15 @@ class FileExercise {
         FileReader fileReader = new FileReader(filename);
         return (char) fileReader.read();
     }
+
+    //2글자 읽어오는 method
+    public String read2Chars(String filename) throws IOException {
+        FileReader fileReader = new FileReader(filename);
+        String str = "";
+        str += (char) fileReader.read();
+        str += (char) fileReader.read();
+        return str;
+    }
 }
 
 public class ReadAFile {
@@ -17,5 +26,7 @@ public class ReadAFile {
         FileExercise fileExercise = new FileExercise();
         char c = fileExercise.readAChar("./src/main/java/week1/read/8842height.txt");
         System.out.println(c);
+        String str = fileExercise.read2Chars("./src/main/java/week1/read/8842height.txt");
+        System.out.println(str);
     }
 }
