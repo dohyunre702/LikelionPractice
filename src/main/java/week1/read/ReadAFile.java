@@ -5,10 +5,11 @@ import java.io.IOException;
 
 class FileExercise {
 
-    private void FileReader(String filename) {
-        this.filename;
-    };
+    private String filename = "./src/main/java/week1/read/8842height.txt";
 
+    public FileExercise() {
+        this.filename = filename;
+    }
 
     //지정한 파일의 맨 앞 한 byte를 읽어오는 method
     public char readAChar(String filename) throws IOException {
