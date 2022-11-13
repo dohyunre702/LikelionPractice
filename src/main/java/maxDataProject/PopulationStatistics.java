@@ -43,6 +43,7 @@ public class PopulationStatistics {
         PopulationStatistics populationStatistics = new PopulationStatistics();
         List<PopulationMove> pml = populationStatistics.readByLine(address);
 
+        //
         // 파일 열 크기 출력 System.out.println(pml.size());
         List<String> strings = new ArrayList<>();
         strings.add("11,11");

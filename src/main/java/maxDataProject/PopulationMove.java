@@ -10,6 +10,7 @@ public class PopulationMove {
         this.toSido = toSido; //전입 지역
     }
 
+    //
     public PopulationMove(String fromSido, String toSido) {
         this.fromSido = Integer.parseInt(fromSido);
         this.toSido = Integer.parseInt(toSido);
