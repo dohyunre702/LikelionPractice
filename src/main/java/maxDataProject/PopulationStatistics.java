@@ -1,26 +1,54 @@
 package maxDataProject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.*;
+import java.nio.Buffer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PopulationStatistics {
-    // 한 라인씩 읽어오기
-    public String readByLine(String filename) {
-        String fileContents;
-        try ( //사용한 자원(BufferedREader) 자동 반납
-            BufferedReader br = Files.newBufferedReader( //BufferedReader 객체 생성
-                    Paths.get("./src/main/java/week1/maxDataProject/2021populationdata.csv"), StandardCharsets.UTF_8))
-        {
-            while ((fileContents = br.readLine()) != null) {
-                fileContents += br.readLine();
-                return fileContents;
+    Parser ps = new Parser();
+
+    public List<PopulationMove> readByLine(String filename) throws IOException {
+        List<PopulationMove> pml = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(
+                new FileReader(filename)
+        );
+        String str;
+        while ((str = reader.readLine()) != null) {
+            PopulationMove pm = ps.parse(str);
+            pml.add(pm);
+
+        }
+        reader.close();
+        return pml;
+    }
+
+    public void write(List<String> strs, String filename) {
+        File file = new File(filename);
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            for (String str : strs) {
+                writer.write(str);
             }
+            writer.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        }   return fileContents;
+                e.printStackTrace();
+            }
+    }
+
+    public static void main(String[] args) throws IOException {
+        String address = "C:/Users/dohyu/git/LikelionPractice/src/main/java/maxDataProject/2021populationdata.csv";
+        //readLineContext new 할 때 Type(PopulationMove)-파싱로직(DoSomething의 구현체) 넣어서 생성.
+        PopulationStatistics populationStatistics = new PopulationStatistics();
+        List<PopulationMove> pml = populationStatistics.readByLine(address);
+
+        // 파일 열 크기 출력 System.out.println(pml.size());
+        List<String> strings = new ArrayList<>();
+        strings.add("11,11");
+        populationStatistics.write(strings, "./from_to.txt");
+
+
     }
 }
 
