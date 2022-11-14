@@ -10,6 +10,5 @@ public class Parser {
         //새로운 PopulationMove 객체를 생성한다
         //저장한 파일 불러와서 파싱하기 위해 로직 변경
         return new PopulationMove(split[0], split[1]);
-
     }
 }

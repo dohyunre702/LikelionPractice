@@ -2,7 +2,9 @@ package maxDataProject;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PopulationStatistics {
     Parser ps = new Parser();
@@ -42,17 +44,14 @@ public class PopulationStatistics {
     }
 
     public static void main(String[] args) throws IOException {
-        //데이터 수 10000개로 줄여서 진행
+        String address = "C:/Users/dohyu/git/LikelionPractice/from_to.txt";
         PopulationStatistics populationStatistics = new PopulationStatistics();
-
-        String address = "C:/Users/dohyu/git/LikelionPractice/src/main/java/maxDataProject/2021populationdata.csv";
-        //readLineContext new 할 때 Type(PopulationMove)-파싱로직(DoSomething의 구현체) 넣어서 생성.
         List<PopulationMove> pml = populationStatistics.readByLine(address);
-        List<String> strings = new ArrayList<>();
-        for (PopulationMove pm : pml) {
-            String fromTo = populationStatistics.fromToString(pm);
-            strings.add(fromTo);
+        //사용된 시도코드 뽑아보기
+        Set<Integer> sideCodes = new HashSet<>();
+        for(PopulationMove pm : pml) {
+            System.out.printf("전입:%s, 전출:%s\n", pm.getFromSido(), pm.getToSido());
         }
-        populationStatistics.write(strings, "./from_to.txt"); //22초만에 10만 건 작성
+
     }
 }
