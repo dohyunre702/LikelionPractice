@@ -7,12 +7,9 @@ public class Parser {
 
         String[] split = data.split(",");
 
-        fromSido = Integer.parseInt(split[0]);
-        toSido = Integer.parseInt(split[6]);
-
         //새로운 PopulationMove 객체를 생성한다
-        //생성자를 활용해 전입 도시, 전출 도시 값을 초기화한다
-        return new PopulationMove(fromSido, toSido);
+        //저장한 파일 불러와서 파싱하기 위해 로직 변경
+        return new PopulationMove(split[0], split[1]);
 
     }
 }
