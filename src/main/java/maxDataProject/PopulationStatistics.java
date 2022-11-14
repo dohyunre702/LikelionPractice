@@ -1,10 +1,11 @@
 package maxDataProject;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class PopulationStatistics {
     Parser ps = new Parser();
@@ -28,6 +29,19 @@ public class PopulationStatistics {
         return pml;
     }
 
+    //라인 읽어오기(파싱 후 파일)
+    public void readAllLines(String filename) throws IOException {
+        List<String> lines = Files.readAllLines(Paths.get(filename), StandardCharsets.UTF_8);
+        List<PopulationMove> pms = lines.parallelStream()
+                .map(item -> {
+                    String[] splittedLine = item.split(",");
+                    return new PopulationMove(splittedLine[0], splittedLine[6]);
+                }).collect(Collectors.toList());
+        for (PopulationMove pm : pms) {
+            System.out.println(pm.getFromSido());
+        }
+    }
+
     //파일에 저장
     public void write(List<String> strs, String filename) {
         File file = new File(filename);
@@ -43,19 +57,44 @@ public class PopulationStatistics {
             }
     }
 
+    //Map으로 변환 - 사람들이 서울에서 어디로 많이 떠났을까?
+/* Map: 전입 도시 - 전출 도시를 key로, 이동 인구 수를 value로 구현
+    {
+     서울-경기도 : 1000,
+     서울-인천광역시 : 2000,
+     서울-세종시 : 3000
+    }
+ */
+    public Map<String, Integer> getMoveCntMap(List<PopulationMove> pml) {
+        Map<String, Integer> moveCntMap = new HashMap<>();
+        for (PopulationMove pm : pml) {
+            String key = pm.getFromSido() + "," + pm.getToSido();
+            if(moveCntMap.get(key) == null) {
+                moveCntMap.put(key, 1);
+            }
+            moveCntMap.put(key, moveCntMap.get(key) + 1);
+        }
+        return moveCntMap;
+    }
+
     public static void main(String[] args) throws IOException {
         String address = "C:/Users/dohyu/git/LikelionPractice/from_to.txt";
-        PopulationStatistics populationStatistics = new PopulationStatistics();
-        List<PopulationMove> pml = populationStatistics.readByLine(address);
+        String fromToAddress = "./from_to_txt";
 
-        //사용된 시도코드 뽑아보기
-        Set<Integer> sidoCodes = new HashSet<>();
-        for(PopulationMove pm : pml) {
-            // System.out.printf("전입:%s, 전출:%s\n", pm.getFromSido(), pm.getToSido());
-            sidoCodes.add(pm.getFromSido());
-            sidoCodes.add(pm.getToSido());
+        CreateAFile createAFile = new CreateAFile();
+
+        PopulationStatistics ps = new PopulationStatistics();
+        List<PopulationMove> pml = ps.readByLine(fromToAddress);
+
+        Map<String, Integer> map = ps.getMoveCntMap(pml);
+
+        String targetFilename = "./each_sido_cnt.txt";
+        createAFile.createAFile(targetFilename);
+        List<String> cntResult = new ArrayList<>();
+        for(String key : map.keySet()) {
+            String s = String.format("key:%s value:%d\n", key, map.get(key));
+            cntResult.add(s);
         }
-        System.out.println(sidoCodes);
-
+        ps.write(cntResult,targetFilename);
     }
 }
