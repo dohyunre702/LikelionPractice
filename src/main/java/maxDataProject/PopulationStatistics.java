@@ -47,11 +47,15 @@ public class PopulationStatistics {
         String address = "C:/Users/dohyu/git/LikelionPractice/from_to.txt";
         PopulationStatistics populationStatistics = new PopulationStatistics();
         List<PopulationMove> pml = populationStatistics.readByLine(address);
+
         //사용된 시도코드 뽑아보기
-        Set<Integer> sideCodes = new HashSet<>();
+        Set<Integer> sidoCodes = new HashSet<>();
         for(PopulationMove pm : pml) {
-            System.out.printf("전입:%s, 전출:%s\n", pm.getFromSido(), pm.getToSido());
+            // System.out.printf("전입:%s, 전출:%s\n", pm.getFromSido(), pm.getToSido());
+            sidoCodes.add(pm.getFromSido());
+            sidoCodes.add(pm.getToSido());
         }
+        System.out.println(sidoCodes);
 
     }
 }
