@@ -16,7 +16,7 @@ public class Main {
         // readLines 메소드는 그 결과들을(splitted[0]이 들어가 생성된 Hospital 객체) 리스트에 계속 더하여 리턴한다. 즉 hospital는 Hospital 객체들의 리스트가 된다.
 
         for (Hospital hospital : hospitals) {
-            System.out.println(hospital.getId()); // Hospital 클래스에서 정의한 게터로 id를 뽑으면 잘 나온다.
+            System.out.println(hospital.getSqlInsertQuery()); // Hospital 클래스에서 정의한 게터로 id를 뽑으면 잘 나온다.
         }
     }
 }
