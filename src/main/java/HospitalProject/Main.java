@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        fileController<Hospital> hospitalLineReader = new fileController<>(new HospitalParser(), true);
+        FileController<Hospital> hospitalLineReader = new FileController<>(new HospitalParser(), true);
         //LineReader 클래스로 객체 만들고 Hospital 타입 읽기.
         //멤버변수로는 HospitalParser를 받고, isRemove = true라서 첫 줄을 지운다
 

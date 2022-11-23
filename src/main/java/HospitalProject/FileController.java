@@ -1,20 +1,19 @@
 package HospitalProject;
 
 import java.io.*;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class fileController<T> { //Hospital, Population 타입 모두 받을 수 있게
+public class FileController<T> { //Hospital, Population 타입 모두 받을 수 있게
     Parser<T> parser;
     boolean isRemoveColumnName = true;
 
     //constructor
-    public fileController(Parser<T> parser) {
+    public FileController(Parser<T> parser) {
         this.parser = parser;
     }
 
-    public fileController(Parser<T> parser, boolean isRemoveColumnName) {
+    public FileController(Parser<T> parser, boolean isRemoveColumnName) {
         this.parser = parser;
         this.isRemoveColumnName = isRemoveColumnName;
     }
